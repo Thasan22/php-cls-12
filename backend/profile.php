@@ -19,7 +19,7 @@ include_once "./backendLayouts/header.php"
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label class="d-block" for="profile_input">
-                                                    <img style="max-width: 100%;" class="profile_img" src="https://api.dicebear.com/7.x/initials/svg?seed=<?=$_SESSION['auth']['fname']?>" alt="">
+                                                    <img style="max-width: 100%;" class="profile_img" src="<?= get_profile() ?>" alt="">
                                                 </label>
                                                     <input name="profile_img" class="d-none" type="file" id="profile_input">
                                                 <span class="text-danger">

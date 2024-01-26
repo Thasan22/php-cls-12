@@ -114,5 +114,5 @@ session_start();
 
 
 <?php
-session_unset();
+unset($_SESSION['errors']);
 ?>

@@ -7,6 +7,17 @@ if(!isset($_SESSION['auth'])){
     session_destroy();
     header("location: ./login.php");
 }
+
+
+// profile help
+function get_profile(){
+    if(isset($_SESSION['auth']['profile_img'])){
+        return "../uploads" . $_SESSION['auth']['profile_img'];
+    }else{
+        return "https://api.dicebear.com/7.x/initials/svg?seed=" . $_SESSION['auth']['fname'];
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

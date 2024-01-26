@@ -5,7 +5,11 @@ $first_name = $_REQUEST["fname"];
 $last_name = $_REQUEST["lname"];
 $email = $_REQUEST["email"];
 $profile_img = $_FILES["profile_img"];
-$extention = pathinfo($profile_img['name'])['extension'];
+$extention = null;
+if($profile_img['size'] > 0){
+    $extention = pathinfo($profile_img['name'])['extension'];
+}
+
 $accept = ['jpg', 'png'];
 $user_id = $_SESSION['auth']['id'];
 
@@ -40,8 +44,8 @@ if(count($errors) > 0){
         mkdir($path);
     }
 
-    // FILE UPLOAD
-    $file_name = null;
+    // FILE UPLOAD    
+    
     if($profile_img['size'] > 0){
         $file_name = "user-". uniqid().".$extention";
         $uploded = move_uploaded_file($profile_img['tmp_name'],$path."/$file_name");
@@ -56,6 +60,11 @@ if(count($errors) > 0){
         $_SESSION['auth']['fname'] = $first_name;
         $_SESSION['auth']['lname'] = $last_name;
         $_SESSION['auth']['email'] = $email;
+
+        if($profile_img['size'] > 0){
+            $_SESSION['auth']['profile_img'] = $file_name;
+        }
+
         header("location: ../backend/profile.php");
     }
 }

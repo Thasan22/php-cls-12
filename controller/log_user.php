@@ -2,7 +2,6 @@
 session_start();
 include_once "../database/env.php";
 
-
 $email = $_REQUEST["email"];
 $password = $_REQUEST["password"];
 
